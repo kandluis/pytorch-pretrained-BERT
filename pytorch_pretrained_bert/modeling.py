@@ -1289,6 +1289,7 @@ class BertForQuestionAnswering(BertPreTrainedModel):
     # TODO check with Google if it's normal there is no dropout on the token classifier of SQuAD in the TF version
     # self.dropout = nn.Dropout(config.hidden_dropout_prob)
     if freeze_embeddings:
+      print("Freezing BERT model embeddings")
       # Freeze everything except the last-linear layer.
       for param in self.bert.parameters():
         param.requires_grad = False

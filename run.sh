@@ -12,7 +12,7 @@ python ./examples/run_squad.py \
   --max_seq_length 384 \
   --doc_stride 128 \
   --output_dir ./save/$MODEL \
-  --train_batch_size 16 \
-  --gradient_accumulation_steps 4 \
+  --train_batch_size 32 \
+  --gradient_accumulation_steps 2 \
   --version_2_with_negative \
-  --null_score_diff_threshold 0.1
+  --null_score_diff_threshold 0.0

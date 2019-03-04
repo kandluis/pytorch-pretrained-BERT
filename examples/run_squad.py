@@ -1009,6 +1009,9 @@ def main():
 
   # Prepare optimizer
   param_optimizer = list(model.named_parameters())
+  for name, parameter in list(model.named_parameters()):
+    if parameter.requires_grad:
+      print(parameter)
 
   # hack to remove pooler, which is not used
   # thus it produce None grad that break apex
