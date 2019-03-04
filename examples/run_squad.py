@@ -1011,7 +1011,7 @@ def main():
   param_optimizer = list(model.named_parameters())
   for name, parameter in list(model.named_parameters()):
     if parameter.requires_grad:
-      print(parameter)
+      print("%s will be trained." % name)
 
   # hack to remove pooler, which is not used
   # thus it produce None grad that break apex
