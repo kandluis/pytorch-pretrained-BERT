@@ -2,6 +2,7 @@ MODEL="bert-base-uncased"
 
 python ./examples/run_squad.py \
   --bert_model $MODEL \
+  --do_train \
   --do_predict \
   --do_lower_case \
   --predict_file ../squad/data/dev-v2.0.json \

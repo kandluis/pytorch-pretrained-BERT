@@ -920,6 +920,12 @@ def main():
       help=
       "If null_score - best_non_null is greater than the threshold predict null."
   )
+  parser.add_argument(
+      '--freeze_embeddings',
+      action='store_true',
+      help=
+      'If true, the embeddings on the BERT model are frozen. This speeds training at the cost of accuracy.'
+  )
   args = parser.parse_args()
 
   if args.local_rank == -1 or args.no_cuda:
@@ -990,7 +996,7 @@ def main():
       args.bert_model,
       cache_dir=os.path.join(PYTORCH_PRETRAINED_BERT_CACHE,
                              'distributed_{}'.format(args.local_rank)),
-      freeze_embeddings=True)
+      freeze_embeddings=args.freeze_embeddings)
 
   if args.fp16:
     model.half()
