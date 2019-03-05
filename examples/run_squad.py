@@ -1149,7 +1149,13 @@ def main():
   # Load a trained model and config that you have fine-tuned
   config = BertConfig(output_config_file)
   model = BertForQuestionAnswering(config)
-  model.load_state_dict(torch.load(output_model_file))
+
+  # On CPU, force-map lodaded models to the CPU.
+  model.load_state_dict(
+      torch.load(
+          output_model_file,
+          map_location=lambda storage, location: storage if n_gpu == 0 else None
+      ))
 
   model.to(device)
 
