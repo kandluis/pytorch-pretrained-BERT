@@ -1136,22 +1136,20 @@ def main():
           optimizer.zero_grad()
           global_step += 1
 
+  output_model_file = os.path.join(args.output_dir, WEIGHTS_NAME)
+  output_config_file = os.path.join(args.output_dir, CONFIG_NAME)
   if args.do_train:
     # Save a trained model and the associated configuration
     model_to_save = model.module if hasattr(
         model, 'module') else model  # Only save the model it-self
-    output_model_file = os.path.join(args.output_dir, WEIGHTS_NAME)
     torch.save(model_to_save.state_dict(), output_model_file)
-    output_config_file = os.path.join(args.output_dir, CONFIG_NAME)
     with open(output_config_file, 'w') as f:
       f.write(model_to_save.config.to_json_string())
 
-    # Load a trained model and config that you have fine-tuned
-    config = BertConfig(output_config_file)
-    model = BertForQuestionAnswering(config)
-    model.load_state_dict(torch.load(output_model_file))
-  else:
-    model = BertForQuestionAnswering.from_pretrained(args.bert_model)
+  # Load a trained model and config that you have fine-tuned
+  config = BertConfig(output_config_file)
+  model = BertForQuestionAnswering(config)
+  model.load_state_dict(torch.load(output_model_file))
 
   model.to(device)
 
