@@ -5,6 +5,7 @@ python ./examples/run_squad.py \
   --do_train \
   --do_predict \
   --do_lower_case \
+  --train_file ../squad/data/train-v2.0.json \
   --predict_file ../squad/data/dev-v2.0.json \
   --learning_rate 3e-5 \
   --num_train_epochs 2 \
