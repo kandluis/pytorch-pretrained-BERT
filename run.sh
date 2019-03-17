@@ -8,10 +8,10 @@ python ./examples/run_squad.py \
   --train_file ../squad/data/train-v2.0.json \
   --predict_file ../squad/data/dev-v2.0.json \
   --learning_rate 3e-5 \
-  --num_train_epochs 2 \
+  --num_train_epochs 5 \
   --max_seq_length 384 \
   --doc_stride 128 \
-  --output_dir ./save/$MODEL \
+  --output_dir ./save/$MODEL-5 \
   --train_batch_size 32 \
   --gradient_accumulation_steps 2 \
   --version_2_with_negative \
